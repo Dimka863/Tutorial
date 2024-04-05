@@ -15,6 +15,10 @@
 
 // console.dir(window);
 
+import add from "./math.js";
+
+console.log(add(2, 3));
+
 const box = document.createElement("div");
 box.id = "box";
 
@@ -61,3 +65,21 @@ window.addEventListener("keydown", (event) => {
       break;
   }
 });
+
+class User {
+  constructor(name, surname, { city, street, house }) {
+    this.name = name;
+    this.surname = surname;
+    this.address = { city, street, house };
+  }
+}
+
+const user = new User("Dmytro", "Lysachenko", {
+  city: "Kyiv",
+  street: "Shevchenka",
+  house: "10",
+});
+
+console.log(user);
+
+console.log(Date.now());
