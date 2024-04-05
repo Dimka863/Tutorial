@@ -15,71 +15,103 @@
 
 // console.dir(window);
 
-import add from "./math.js";
+// import add from "./math.js";
 
-console.log(add(2, 3));
+// console.log(add(2, 3));
 
-const box = document.createElement("div");
-box.id = "box";
+// const box = document.createElement("div");
+// box.id = "box";
 
-box.style.width = "100px";
-box.style.height = "50px";
-box.style.backgroundColor = "red";
-box.style.position = "absolute";
-box.style.left = "50%";
-box.style.top = "50%";
-box.style.transform = "translate(-50%, -50%)";
-let top = 50;
-let left = 50;
+// box.style.width = "100px";
+// box.style.height = "50px";
+// box.style.backgroundColor = "red";
+// box.style.position = "absolute";
+// box.style.left = "50%";
+// box.style.top = "50%";
+// box.style.transform = "translate(-50%, -50%)";
+// let top = 50;
+// let left = 50;
 
-document.body.append(box);
+// document.body.append(box);
 
-window.addEventListener("keydown", (event) => {
-  switch (event.code) {
-    case "ArrowDown":
-      if (box.offsetTop < window.innerHeight - box.offsetHeight / 2) {
-        box.style.top = `calc(${top + 1}%)`;
-        top += 1;
-      }
-      break;
+// window.addEventListener("keydown", (event) => {
+//   switch (event.code) {
+//     case "ArrowDown":
+//       if (box.offsetTop < window.innerHeight - box.offsetHeight / 2) {
+//         box.style.top = `calc(${top + 1}%)`;
+//         top += 1;
+//       }
+//       break;
 
-    case "ArrowUp":
-      if (box.offsetTop > box.offsetHeight / 2) {
-        box.style.top = `calc(${top - 1}%)`;
-        top -= 1;
-      }
-      break;
+//     case "ArrowUp":
+//       if (box.offsetTop > box.offsetHeight / 2) {
+//         box.style.top = `calc(${top - 1}%)`;
+//         top -= 1;
+//       }
+//       break;
 
-    case "ArrowLeft":
-      if (box.offsetLeft > box.offsetWidth / 2) {
-        box.style.left = `calc(${left - 1}%)`;
-        left -= 1;
-      }
-      break;
+//     case "ArrowLeft":
+//       if (box.offsetLeft > box.offsetWidth / 2) {
+//         box.style.left = `calc(${left - 1}%)`;
+//         left -= 1;
+//       }
+//       break;
 
-    case "ArrowRight":
-      if (box.offsetLeft < window.innerWidth - box.offsetWidth / 2) {
-        box.style.left = `calc(${left + 1}%)`;
-        left += 1;
-      }
-      break;
+//     case "ArrowRight":
+//       if (box.offsetLeft < window.innerWidth - box.offsetWidth / 2) {
+//         box.style.left = `calc(${left + 1}%)`;
+//         left += 1;
+//       }
+//       break;
+//   }
+// });
+
+// Напиши гру "Натисни правильну клавішу", використовуючи події keydown та keypress.
+// Створити елементи для відображення повідомлення про стан гри та поточної клавіші, яку потрібно натиснути.
+// Створити масив keys, що містить десять можливих клавіш, які можуть бути натиснуті.
+// Створити змінну currentKeyIndex, що зберігає індекс поточної клавіші, яку потрібно натиснути.
+// Встановити текст елементу з id="key" на поточну клавішу, яку потрібно натиснути.
+// Створити обробник події keydown, що перевіряє, чи була натиснута правильна клавіша. Якщо була натиснута правильна клавіша, то збільшити currentKeyIndex на 1, встановити нову поточну клавішу та оновити текст елементу з id="key". Якщо була натиснута неправильна клавіша, то повідомити користувача про помилку.
+// Створити обробник події keypress, що запобігає дії за замовчуванням для уникнення несподіваного поведінки сторінки під час гри.
+// Додати кнопку "Нова гра", що оновлює гру з новим поточним ключем та повідомленням.
+
+const msg = document.createElement("div");
+const body = document.querySelector("body");
+msg.id = "msg";
+const keys = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+let currentKeyIndex = 0;
+document.body.append(msg);
+msg.textContent =
+  "Правила гри прості - нажимай на клавіші, що вказані на вашому екрані.";
+console.log();
+body.addEventListener("keydown", (event) => {
+  if (event.code === `key${keys[currentKeyIndex]}`) {
+    msg.textContent = "Правильна клавіша";
+    currentKeyIndex++;
+  } else {
+    msg.textContent = "Неправильна клавіша";
   }
+  console.log(event);
+  console.log(event.code);
 });
 
-class User {
-  constructor(name, surname, { city, street, house }) {
-    this.name = name;
-    this.surname = surname;
-    this.address = { city, street, house };
-  }
-}
-
-const user = new User("Dmytro", "Lysachenko", {
-  city: "Kyiv",
-  street: "Shevchenka",
-  house: "10",
-});
-
-console.log(user);
-
-console.log(Date.now());
+// 2. Написати програму яка буде за допомогою миші рухати блок на екрані. Цей код повинен прослуховати подію mousemove на документі та рухати блок на відстань, яку миша змістилася відносно центру блоку. Якщо вам потрібно рухати саме центр блоку, ви можете додати до відстані половину ширини та висоти блоку.
+// 3. Розробіть програму для відображення списку користувачів з можливістю видалення окремих користувачів. Використовуйте делегування подій для обробки кліків на кнопках видалення, щоб зменшити кількість обробників подій та спростити код.
+// 4. Розробіть програму, яка відображає список завдань з можливістю додавання, видалення та відмітки виконаних завдань. Використовуйте делегування подій для обробки кліків на кнопках видалення та чекбоксах виконаних завдань.
+// 5. Написати програму яка буде робити підсвічування активного елементу навігації при кліці. Коли користувач натискає на кнопку вона повинна змінювати колір, якщо при цьому вже була обрана інша, вона повинна повернутися в початковий стан. Тобто активна (підсвічена) кнопка повинна бути лише одна.
+// 6. Напишіть програму для керування списком задач з можливістю додавання, видалення та відмічання їх виконанням. Використовуйте делегування подій для зменшення кількості обробників подій та спрощення коду.
+// Створення списку задач та їх відображення на сторінці:
+// Створити форму для додавання нової задачі з полем введення та кнопкою "Додати".
+// Створити список, в який будуть додаватися всі нові задачі. Кожна задача має містити чекбокс для відмітки виконання та кнопку для видалення.
+// При додаванні нової задачі до списку, вона має додаватися у вигляді нового елементу списку.
+// Всі задачі мають зберігатися у масиві для зручного керування.
+// Відмічання виконання задач:
+// Для кожної задачі у списку є чекбокс, при кліку на який задача повинна відмічатися як виконана.
+// Виконані задачі мають змінювати свій стиль (наприклад, забарвлювання) для позначення їх статусу.
+// Видалення задач:
+// Для кожної задачі у списку є кнопка "Видалити", при кліку на яку задача має видалятися зі списку та з масиву.
+// Делегування подій:
+// Використовуйте делегування подій для зменшення кількості обробників подій та спрощення коду.
+// Всі обробники подій мають бути підвішені на батьківський елемент списку.
+// При додаванні нової задачі до списку, обробник події має бути доданий до новоствореного елементу списку.
+// При відмічанні виконання або видаленні задачі, обробник події має бути доданий до відповідного елементу у списку.
